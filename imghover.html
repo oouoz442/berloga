@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Preloader | Pace JS</title>
+    <link rel="stylesheet" type="text/css" href="imghover.css">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-bez@1.0.11/src/jquery.bez.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+
+    
+    <script src="https://cdn.rawgit.com/bradley/Blotter/master/build/blotter.min.js"></script>
+    <script src="https://cdn.rawgit.com/bradley/Blotter/3007fe6e/build/materials/fliesMaterial.js"></script>
+</head>
+  <body>    
+    <h1 class="title" id="main"></h1>
+
+    <div class="wrapper">
+      <img src="music.png">
+
+      <div class="overlay">
+        <div class="content">Image Hover Effect</div>
+      </div>
+      
+    </div>
+    
+<script>
+
+  container = document.getElementById("main");
+
+  var text = new Blotter.Text("BERLOGA", {
+      family: "serif",
+      size: 150,
+      fill: "#A9A9A9",
+      paddingLeft: 80,
+      paddingRight: 80,
+      paddingTop: 80,
+      paddingBottom: 80
+  });
+
+  var material = new Blotter.FliesMaterial();
+  material.uniforms.uPointCellWidth.value = 0.01;
+  material.uniforms.uPointRadius.value = 0.5;
+  material.uniforms.uSpeed.value = 3;
+
+  var blotter = new Blotter(material, {
+      texts: text
+  });
+
+  var scope = blotter.forText(text);
+  scope.appendTo(container);
+
+</script>
+  </body>
+</html>

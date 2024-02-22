@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Preloader | Pace JS</title>
+    <link rel="stylesheet" type="text/css" href="index2.css">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="pace.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-bez@1.0.11/src/jquery.bez.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
+
+    
+    <script src="https://cdn.rawgit.com/bradley/Blotter/master/build/blotter.min.js"></script>
+    <script src="https://cdn.rawgit.com/bradley/Blotter/3007fe6e/build/materials/fliesMaterial.js"></script>
+</head>
+  <body>    
+    <h1 class="title" id="main"></h1>
+
+    <div class="signin">
+
+      <form action="main.html">
+        <!--<h2>Sign In</h2>-->
+        <input type="text" placeholder="Enter Username">
+        <input type="text" placeholder="Enter Password">
+        <button class="btn" id="sign_in">Sign In</button>
+      </form>
+
+    </div>
+
+
+    <div id="preloader">
+      <div class="p">LOADING</div>
+    </div>  
+
+    
+<script>
+
+  paceOptions = {
+  ajax: true,
+  document: true,
+  eventLag: false
+  };
+
+  Pace.on('done', function() {
+  $('.p').delay(500).animate({top: '30%', opacity: '0'}, 3000, $.bez([0.19,1,0.22,1]));
+
+
+  $('#preloader').delay(1500).animate({top: '-100%'}, 2000, $.bez([0.19,1,0.22,1]));
+
+  TweenMax.from(".title", 2, {
+       delay: 2,
+            y: 10,
+            opacity: 0,
+            ease: Expo.easeInOut
+      })
+
+  TweenMax.from(".signin", 2, {
+        delay: 2.4,
+            y: 10,
+            opacity: 0,
+            ease: Expo.easeInOut
+      })    
+ });
+
+</script>
+    
+<script>
+
+  container = document.getElementById("main");
+
+  var text = new Blotter.Text("BERLOGA", {
+      family: "serif",
+      size: 150,
+      fill: "#A9A9A9",
+      paddingLeft: 80,
+      paddingRight: 80,
+      paddingTop: 80,
+      paddingBottom: 80
+  });
+
+  var material = new Blotter.FliesMaterial();
+  material.uniforms.uPointCellWidth.value = 0.01;
+  material.uniforms.uPointRadius.value = 0.5;
+  material.uniforms.uSpeed.value = 3;
+
+  var blotter = new Blotter(material, {
+      texts: text
+  });
+
+  var scope = blotter.forText(text);
+  scope.appendTo(container);
+
+</script>
+
+  </body>
+</html>
